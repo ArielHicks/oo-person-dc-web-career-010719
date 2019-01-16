@@ -1,8 +1,9 @@
-# your code goes here
+
 class Person
 
-attr_accessor :bank_account
-attr_reader :name, :happiness, :hygiene
+  attr_accessor :bank_account, :happiness
+  attr_reader :name, :hygiene
+
 
   def initialize(name)
     @name = name
@@ -11,41 +12,30 @@ attr_reader :name, :happiness, :hygiene
     @hygiene = 8
   end
 
-  def happiness=(happ_level)
-    if happ_level < 0
-      @happiness = 0
-    elsif happ_level > 10
-      @happiness = 10
-    else @happiness = happ_level
-    end
+  def happiness=(num)
+    @happiness = num
+    @happiness = 10 if @happiness > 10
+    @happiness = 0 if @happiness < 0
   end
 
-  def hygiene=(hyg_level)
-    if hyg_level < 0
-      @hygiene = 0
-    elsif hyg_level > 10
-      @hygiene = 10
-    else @hygiene = hyg_level
-    end
+  def hygiene=(num)
+    @hygiene = num
+    @hygiene = 10 if @happiness > 10
+    @hygiene = 0 if @happiness < 0
   end
 
   def happy?
-    if @happiness > 7
-      true
-    else false
-    end
+    happiness > 7
   end
 
   def clean?
-    if @hygiene > 7
-      true
-    else false
-    end
+    hygiene > 7
   end
 
   def get_paid(salary)
-    @bank_account += salary
-   "all about the benjamins"
+    self.bank_account += salary
+    self.happiness += 1
+    "all about the benjamins"
   end
 
   def take_bath
@@ -54,28 +44,9 @@ attr_reader :name, :happiness, :hygiene
   end
 
   def work_out
-    self.hygiene -= 3
-    self.happiness += 2
+    self.happiness + 2
+    self.hygiene - 3
     "♪ another one bites the dust ♫"
-  end
-
-  def call_friend(name)
-    self.happiness += 3
-    name.happiness += 3
-    "Hi #{name.name}! It's #{@name}. How are you?"
-  end
-
-  def start_conversation(person, topic)
-    if topic == "politics"
-      self.happiness -= 2
-      person.happiness -= 2
-      return 'blah blah partisan blah lobbyist'
-    elsif topic == "weather"
-      self.happiness += 1
-      person.happiness += 1
-      return 'blah blah sun blah rain'
-    else return 'blah blah blah blah blah'
-    end
   end
 
 end
